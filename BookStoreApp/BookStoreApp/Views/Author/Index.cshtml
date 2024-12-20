@@ -1,0 +1,49 @@
+﻿
+@model List<BookStoreApp.DTOs.AuthorsDto>
+@{
+    ViewBag.Title = "Authors";
+}
+
+<body>
+
+    <h2>Authors</h2>
+    <hr />
+
+    <table class="table my-3 py-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Full name</th>
+                <th scope="col">City origin</th>
+                <th scope="col">Email</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+
+                foreach (var author in Model)
+                {
+                        <tr>
+                            <td class="text-center" scope="row">@i</td>
+                            <td> @author.FullName </td>
+                            <td> @author.CityOrigin </td>
+                            <td> @author.Email </td>
+                            <td class="text-center">
+                                <i class="bi bi-trash3 icon-error" onclick='window.location.href = "@Url.Action("Delete", "Author", routeValues: new { id = author.Id_author })"'></i>
+                            </td>
+                        </tr>
+                    i++;
+                }
+            }
+
+        </tbody>
+    </table>
+
+    <button class="btn btn-success btn-add rounded-circle shadow-sm" onclick='window.location.href = "@Url.Action("Form", "Author", routeValues: null)"'>
+        <i class="bi bi-person-add"></i>
+    </button>
+
+</body>
+
